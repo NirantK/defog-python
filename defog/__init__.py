@@ -471,8 +471,8 @@ class Defog:
         except KeyError as key_error:
             ran_successfully = False
             raise Exception(
-                f"Error running the query. The response is: {resp}.", key_error
-            )
+                f"Error running the query. The response is: {resp}."
+            ) from key_error
 
         error_message = resp.get("error_message")
         query_db = resp.get("query_db", "postgres")
