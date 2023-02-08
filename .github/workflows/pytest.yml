@@ -19,7 +19,7 @@ jobs:
       - name: Install pytest
         run: |
           pip install -e .
-          pip install pytest
+          pip install -r requirements.txt
       - name: Run test suite
         run: |
           pytest -vvx
