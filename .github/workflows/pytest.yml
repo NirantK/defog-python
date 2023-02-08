@@ -8,22 +8,20 @@ jobs:
     timeout-minutes: 10
 
     steps:
-        - name: Check out repository code
+      - name: Check out repository code
         uses: actions/checkout@v2
+      # Setup Python (faster than using Python container)
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.x"
 
-        # Setup Python (faster than using Python container)
-        - name: Setup Python
+      - name: Install pytest
         uses: actions/setup-python@v2
         with:
-            python-version: "3.x"
-        
-        - name: Install pytest
-        uses: actions/setup-python@v2
-        with:
-            python-version: "3.x"
+          python-version: "3.x"
         run: |
-            pip install pytest
-            
-       - name: Run test suite
+          pip install pytest
+      - name: Run test suite
         run: |
-            pytest -vvx
+          pytest -vvx
