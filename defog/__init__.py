@@ -468,11 +468,10 @@ class Defog:
 
         try:
             ran_successfully = resp["ran_successfully"]
-        except KeyError as ke:
+        except KeyError as key_error:
             ran_successfully = False
             raise Exception(
-                f"Error running the query. The error was: {resp['error']}: {resp['message']}.",
-                ke,
+                f"Error running the query. The response is: {resp}.", key_error
             )
 
         error_message = resp.get("error_message")
