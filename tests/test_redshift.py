@@ -3,6 +3,8 @@ from os import environ
 from defog import Defog
 import pandas as pd
 
+print(environ.get("DUMMY_SECRET"))
+
 # Connect to Redshift
 db_creds = {
     "host": environ.get("REDSHIFT_HOST"),
@@ -11,8 +13,6 @@ db_creds = {
     "user": environ.get("REDSHIFT_USER"),
     "password": environ.get("REDSHIFT_PASSWORD"),
 }
-
-print(db_creds["user"])
 
 defog = Defog(
     str(environ.get("DEFOG_API_KEY")),
