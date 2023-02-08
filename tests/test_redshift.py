@@ -3,7 +3,6 @@ from os import environ
 from defog import Defog
 import pandas as pd
 
-print(environ.get("DUMMY_SECRET"))
 
 # Connect to Redshift
 db_creds = {
@@ -54,6 +53,7 @@ def test_venue_count() -> None:
     """
     Test that the venue count is correct.
     """
+    print(environ.get("DUMMY_SECRET"))
     answer = defog.run_query("How many venues do we have?")
     assert answer["data"][0][0] == 202
 
