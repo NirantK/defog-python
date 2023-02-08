@@ -8,7 +8,7 @@ class Defog:
     The main class for Defog
     """
 
-    def __init__(self, api_key: str, db_type: str = "postgres", db_creds: dict = None):
+    def __init__(self, api_key: str, db_type: str = "postgres", db_creds: dict = None, verbose: int = 0):
         """
         Initializes the Defog class.
         :param api_key: The API key for the defog account.
@@ -25,6 +25,7 @@ class Defog:
             raise Exception(
                 f"Database `{db_type}` is not supported right now. db_type must be one of 'postgres', 'redshift', 'mysql', 'bigquery', 'mongo', 'sqlserver'."
             )
+        self.verbose = verbose
         self.api_key = api_key
         self.db_type = db_type
         self.db_creds = db_creds
@@ -478,6 +479,8 @@ class Defog:
         query = self.get_query(question, hard_filters)
         if query["ran_successfully"]:
             print("Query generated, now running it on your database...")
+            if self.verbose > 0:
+                print(f"Query generated was: {query['query_generated']}")
             if query["query_db"] == "postgres" or query["query_db"] == "redshift":
                 try:
                     import psycopg2
