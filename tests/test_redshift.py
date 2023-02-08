@@ -48,12 +48,12 @@ defog = Defog(
 #     assert answer["data"][0][0] == 11
 
 
-# def test_venue_count() -> None:
-#     """
-#     Test that the venue count is correct.
-#     """
-#     answer = defog.run_query("How many venues do we have?")
-#     assert answer["data"][0][0] == 202
+def test_venue_count() -> None:
+    """
+    Test that the venue count is correct.
+    """
+    answer = defog.run_query("How many venues do we have?")
+    assert answer["data"][0][0] == 202
 
 
 # def test_event_count() -> None:
