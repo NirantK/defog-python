@@ -8,7 +8,13 @@ class Defog:
     The main class for Defog
     """
 
-    def __init__(self, api_key: str, db_type: str = "postgres", db_creds: dict = None, verbose: int = 0):
+    def __init__(
+        self,
+        api_key: str,
+        db_type: str = "postgres",
+        db_creds: dict = None,
+        verbose: int = 0,
+    ):
         """
         Initializes the Defog class.
         :param api_key: The API key for the defog account.
@@ -464,8 +470,10 @@ class Defog:
             ran_successfully = resp["ran_successfully"]
         except KeyError as ke:
             ran_successfully = False
-            raise Exception(f"Error running the query. The error was: {resp['error']}: {resp['message']}.", ke)
-
+            raise Exception(
+                f"Error running the query. The error was: {resp['error']}: {resp['message']}.",
+                ke,
+            )
 
         error_message = resp.get("error_message")
         query_db = resp.get("query_db", "postgres")
@@ -485,7 +493,6 @@ class Defog:
         print(f"Generating the query for your question: {question}...")
         query = self.get_query(question, hard_filters)
         if query["ran_successfully"]:
-            try:
             print("Query generated, now running it on your database...")
             if self.verbose > 0:
                 print(f"Query generated was: {query['query_generated']}")
