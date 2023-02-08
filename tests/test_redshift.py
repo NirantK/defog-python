@@ -12,11 +12,13 @@ db_creds = {
     "password": environ.get("REDSHIFT_PASSWORD"),
 }
 
+print(db_creds["user"])
+
 defog = Defog(
     str(environ.get("DEFOG_API_KEY")),
     "redshift",
     db_creds,
-    verbose=2,
+    verbose=0,
 )
 
 
